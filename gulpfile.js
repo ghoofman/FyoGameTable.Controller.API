@@ -104,7 +104,8 @@ function cssFiles(opt) {
  */
 function appFiles() {
     var files = [
-        './js/**/*.js'
+        './js/**/*.js',
+        './bower_components/platform.js/platform.js'
     ];
     return gulp.src(files);
 }

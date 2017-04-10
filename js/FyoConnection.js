@@ -50,7 +50,26 @@ var FYO = FYO || {};
 
             this.socket.emit('SGHandshakeIdentMsg', {
                 DeviceId: self.GetClientId(),
-                Controller: self.controller
+                Controller: self.controller,
+                Info: {
+                    browser: platform.name,
+                    version: platform.version,
+                    manufacturer: platform.manufacturer,
+                    product: platform.product,
+                    os: {
+                        family: platform.os.family,
+                        version: platform.os.version,
+                        architecture: platform.os.architecture
+                    },
+                    description: platform.description,
+                    layout: platform.layout,
+                    ua: platform.ua,
+                    resolution: {
+                        width: window.screen.width,
+                        height: window.screen.height,
+                        pixelRatio: window.devicePixelRatio
+                    }
+                }
             });
 
             this.socket.on('Redirect', function (path) {
