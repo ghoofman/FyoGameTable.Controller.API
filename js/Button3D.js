@@ -4,6 +4,8 @@ var FYO = FYO || {};
     'use strict';
 
     function Button3D(connector, options) {
+        options = options || {};
+
         this.connector = connector;
 
         this.element = null;

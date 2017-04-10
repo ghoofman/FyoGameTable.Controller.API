@@ -4,6 +4,7 @@ var FYO = FYO || {};
     'use strict';
 
     function IOHelper(options) {
+        options = options || {};
 
         if (window.DeviceOrientationEvent) {            
             // Listen for the event and handle DeviceOrientationEvent object

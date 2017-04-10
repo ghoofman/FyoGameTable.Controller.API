@@ -4,6 +4,8 @@ var FYO = FYO || {};
     'use strict';
 
     function Button3D(connector, options) {
+        options = options || {};
+
         this.connector = connector;
 
         this.element = null;
@@ -289,8 +291,10 @@ var FYO = FYO || {};
 (function () {
     'use strict';
 
-    function FyoConnection(controller) {
+    function FyoConnection(controller, options) {
         var self = this;
+
+        options = options || {};
 
         this.controller = controller;
         this.socket = io();
@@ -318,10 +322,10 @@ var FYO = FYO || {};
                 });
             }
         });
-
+        
         var fullscreenImage = document.createElement('img');
         fullscreenImage.setAttribute('class', 'fyo-fullscreen');
-        fullscreenImage.setAttribute('src', '/fyogametable/imgs/fullscreen-128.png');
+        fullscreenImage.setAttribute('src', options.fullscreenImage || '/fyogametable/assets/imgs/fullscreen-128.png');
         fullscreenImage.onclick = FYO.IOHelper.FullScreen;
         document.body.appendChild(fullscreenImage);
     }
@@ -453,6 +457,7 @@ var FYO = FYO || {};
     'use strict';
 
     function IOHelper(options) {
+        options = options || {};
 
         if (window.DeviceOrientationEvent) {            
             // Listen for the event and handle DeviceOrientationEvent object
@@ -592,7 +597,8 @@ var FYO = FYO || {};
     'use strict';
 
     function ThumbStick3D(connector, options) {
-        
+        options = options || {};
+
         this.connector = connector;
 
         this.element = null;

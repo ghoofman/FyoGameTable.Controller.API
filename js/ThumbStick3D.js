@@ -4,7 +4,8 @@ var FYO = FYO || {};
     'use strict';
 
     function ThumbStick3D(connector, options) {
-        
+        options = options || {};
+
         this.connector = connector;
 
         this.element = null;
