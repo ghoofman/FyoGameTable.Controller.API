@@ -28,7 +28,7 @@ connector.on('SGUpdateMsg', function(packet) {
 
 ### Rendered Controls
 
-'''javascript
+```javascript
 var thumbstick = new FYO.ThumbStick3D(connecter, {
     side: false,
     container: 'mainContainer',
@@ -47,4 +47,4 @@ var button = new FYO.Button3D(connecter, {
         connecter.SetButtonOff(FYO.BUTTON[0]);
     }
 });
-'''
+```
