@@ -8,6 +8,8 @@ Fyo Game Table javascript API for creating Socket Game Pad Controllers
 bower install fyogametable
 ```
 
+![Base Controller Example](http://i.imgur.com/SgJQv3Z.png)
+
 ## Usage
 
 ### Connection and basic messages
