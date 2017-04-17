@@ -6,6 +6,11 @@ var FYO = FYO || {};
     function FyoConnection(controller, options) {
         var self = this;
 
+        if (!controller) {
+            alert('Controller must be specified');
+            return;
+        }
+
         options = options || {};
 
         this.controller = controller;
@@ -48,28 +53,13 @@ var FYO = FYO || {};
         OnConnect: function () {
             var self = this;
 
-            this.socket.emit('SGHandshakeIdentMsg', {
-                DeviceId: self.GetClientId(),
-                Controller: self.controller,
-                Info: {
-                    browser: platform.name,
-                    version: platform.version,
-                    manufacturer: platform.manufacturer,
-                    product: platform.product,
-                    os: {
-                        family: platform.os.family,
-                        version: platform.os.version,
-                        architecture: platform.os.architecture
-                    },
-                    description: platform.description,
-                    layout: platform.layout,
-                    ua: platform.ua,
-                    resolution: {
-                        width: window.screen.width,
-                        height: window.screen.height,
-                        pixelRatio: window.devicePixelRatio
-                    }
-                }
+            this.IOHelper.GetDeviceInfo(function (info) {
+                console.log(info);
+                self.socket.emit('SGHandshakeIdentMsg', {
+                    DeviceId: self.GetClientId(),
+                    Controller: self.controller,
+                    Info: info
+                });
             });
 
             this.socket.on('Redirect', function (path) {
