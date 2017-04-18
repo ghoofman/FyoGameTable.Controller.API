@@ -16,3 +16,37 @@
     padding: 1px;
     color: #444;
 }
+
+.fyo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    overflow-y:auto;
+
+    .fyo-picture {
+        width: 320px;
+        max-height: 50%;
+        margin: 0 auto;
+        margin-top: 5%;
+
+        .btn {
+            display: block;
+            color: #fff;
+            background-color: #222;
+            border: 1px solid #444;
+            padding: 8px;
+            border-radius: 3px;
+            text-align: center;
+            text-decoration: none;
+            margin: 3px;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+    }
+}

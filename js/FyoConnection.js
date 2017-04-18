@@ -157,6 +157,13 @@ var FYO = FYO || {};
             });
         },
 
+        TakePicture: function (ev) {
+            var self = this;
+            var picture = new FYO.Picture(function (data) {
+                self.Send(ev || 'Picture', data);
+            });
+        },
+
         // Event Manager - easy access
         on: function (e, f) {
             return this.events.on(e, f);

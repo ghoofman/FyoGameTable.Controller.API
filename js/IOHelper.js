@@ -46,51 +46,51 @@ var FYO = FYO || {};
         }
     };
 
-    IOHelper.prototype = {
-        _getDevices: function (cb) {
-            if (navigator.mediaDevices) {
-                navigator.mediaDevices.enumerateDevices().then(function (devices) {
-                    var result = {
-                        audioInput: [],
-                        audioOutput: [],
-                        videoInput: []
-                    };
+    IOHelper.GetDevices = function (cb) {
+        if (navigator.mediaDevices) {
+            navigator.mediaDevices.enumerateDevices().then(function (devices) {
+                var result = {
+                    audioInput: [],
+                    audioOutput: [],
+                    videoInput: []
+                };
 
-                    for (var i = 0; i < devices.length; i++) {
-                        switch (devices[i].kind) {
-                            case 'audioinput':
-                                result.audioInput.push({
-                                    deviceId: devices[i].deviceId,
-                                    groupId: devices[i].groupId,
-                                    label: devices[i].label
-                                });
-                                break;
-                            case 'videoinput':
-                                result.videoInput.push({
-                                    deviceId: devices[i].deviceId,
-                                    groupId: devices[i].groupId,
-                                    label: devices[i].label
-                                });
-                                break;
-                            case 'audiooutput':
-                                result.audioOutput.push({
-                                    deviceId: devices[i].deviceId,
-                                    groupId: devices[i].groupId,
-                                    label: devices[i].label
-                                });
-                                break;
-                            default:
-                                break;
-                        }
+                for (var i = 0; i < devices.length; i++) {
+                    switch (devices[i].kind) {
+                        case 'audioinput':
+                            result.audioInput.push({
+                                deviceId: devices[i].deviceId,
+                                groupId: devices[i].groupId,
+                                label: devices[i].label
+                            });
+                            break;
+                        case 'videoinput':
+                            result.videoInput.push({
+                                deviceId: devices[i].deviceId,
+                                groupId: devices[i].groupId,
+                                label: devices[i].label
+                            });
+                            break;
+                        case 'audiooutput':
+                            result.audioOutput.push({
+                                deviceId: devices[i].deviceId,
+                                groupId: devices[i].groupId,
+                                label: devices[i].label
+                            });
+                            break;
+                        default:
+                            break;
                     }
+                }
 
-                    cb && cb(result);
-                });
-            } else {
-                cb && cb(null);
-            }
-        },
+                cb && cb(result);
+            });
+        } else {
+            cb && cb(null);
+        }
+    };
 
+    IOHelper.prototype = {
         _getBattery: function (cb) {
             if (navigator.getBattery) {
                 navigator.getBattery().then(function (battery) {
@@ -184,7 +184,7 @@ var FYO = FYO || {};
                     };
                 }
 
-                self._getDevices(function (devices) {
+                IOHelper.GetDevices(function (devices) {
                     result.devices = devices;
 
                     cb && cb(result);
