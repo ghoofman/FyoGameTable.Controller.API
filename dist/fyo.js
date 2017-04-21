@@ -1023,6 +1023,7 @@ var FYO = FYO || {};
                 window.removeEventListener("orientationchange", orientationChange);
                 self.video.removeEventListener('canplay', videoCanPlay);
                 self.video.srcObject = null;
+                self.video.src = null;
             }
             
             FYO.IOHelper.GetDevices(function (result) {
@@ -1322,7 +1323,7 @@ var FYO = FYO || {};
 
             // model
             var loader = new THREE.OBJLoader(manager);
-            loader.load('/fyogametable/assets/objs/leftThumb.obj', function (object) {
+            loader.load('/fyogametable/assets/objs/LeftThumb.obj', function (object) {
                 object.traverse(function (child) {
                     //console.log(child);
                     if (child instanceof THREE.Mesh) {
@@ -1338,7 +1339,7 @@ var FYO = FYO || {};
                 self.thumbObj = object;
                 self.scene.add(object);
             }, onProgress, onError);
-            loader.load('/fyogametable/assets/objs/leftThumbBase.obj', function (object) {
+            loader.load('/fyogametable/assets/objs/LeftThumbBase.obj', function (object) {
                 object.traverse(function (child) {
                     if (child instanceof THREE.Mesh) {
                         child.material.color = new THREE.Color(0x222222);
