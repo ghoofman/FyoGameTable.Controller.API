@@ -1385,8 +1385,19 @@ var FYO = FYO || {};
             this.mouseY = this.elementHalfY;
             this._update();
         },
-        onTouchStart: function () {
+        onTouchStart: function (event) {
             navigator.vibrate(10);
+            var rect = this.element.getBoundingClientRect();
+            for (var i = 0; i < event.touches.length; i++) {
+                // determine if touch is within rect
+                var touch = event.touches[i];
+
+                if (touch.pageX >= rect.left && touch.pageX <= rect.right && touch.pageY >= rect.top && touch.pageY <= rect.bottom) {
+                    this.mouseX = touch.pageX - rect.left;
+                    this.mouseY = touch.pageY - rect.top;
+                    this._update();
+                }
+            }
         },
         onTouchMove: function (event) {
             event.preventDefault();
