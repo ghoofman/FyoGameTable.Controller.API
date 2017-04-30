@@ -3,7 +3,7 @@ var FYO = FYO || {};
 (function () {
     'use strict';
 
-    function FyoConnection(controller, options) {
+    function FyoConnection(controller, options, cb) {
         var self = this;
 
         if (!controller) {
@@ -45,6 +45,10 @@ var FYO = FYO || {};
         fullscreenImage.setAttribute('src', options.fullscreenImage || '/fyogametable/assets/imgs/fullscreen-128.png');
         fullscreenImage.onclick = FYO.IOHelper.FullScreen;
         document.body.appendChild(fullscreenImage);
+        this.IOHelper.GetDeviceInfo(function (info) {
+            self.info = info;
+            self.events.trigger('info');
+        });
     }
 
     FyoConnection.prototype = {
@@ -55,14 +59,20 @@ var FYO = FYO || {};
 
             this.IOHelper.GetDeviceInfo(function (info) {
                 console.log(info);
+                self.info = info;
                 self.socket.emit('SGHandshakeIdentMsg', {
                     DeviceId: self.GetClientId(),
                     Controller: self.controller,
                     Info: info
                 });
+                self.events.trigger('connected');
             });
 
             this.socket.on('Redirect', function (path) {
+                if (path == this.controller) {
+                    // we're already at this controller
+                    return;
+                }
                 window.location = '/' + path;
             });
 

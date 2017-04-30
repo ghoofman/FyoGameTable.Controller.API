@@ -29,7 +29,6 @@ var FYO = FYO || {};
         navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
         this.Init(options);
-        this.Animate();
     }
 
     ThumbStick3D.prototype = {
@@ -132,6 +131,7 @@ var FYO = FYO || {};
                 object.position.y = 0;
                 self.thumbObj = object;
                 self.scene.add(object);
+                self.Render();
             }, onProgress, onError);
             loader.load('/fyogametable/assets/objs/LeftThumbBase.obj', function (object) {
                 object.traverse(function (child) {
@@ -141,6 +141,7 @@ var FYO = FYO || {};
                 });
                 object.position.y = 0;
                 self.scene.add(object);
+                self.Render();
             }, onProgress, onError);
 
             //
@@ -158,6 +159,7 @@ var FYO = FYO || {};
             this.element.addEventListener('touchend', function (e) { self.onTouchDone(e); }, false);
             //
             window.addEventListener('resize', function (e) { self.onWindowResize(e); }, false);
+            this.Render();
         },
 
         onWindowResize: function () {
@@ -166,18 +168,21 @@ var FYO = FYO || {};
             this.camera.aspect = this.elementHalfX / this.elementHalfY;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(this.element.clientWidth, this.element.clientHeight);
+            this.Render();
         },
         onMouseMove: function (event) {
             event.preventDefault();
             this.mouseX = event.offsetX;
             this.mouseY = event.offsetY;
             this._update();
+            this.Render();
         },
         onMouseLeave: function (event) {
             event.preventDefault();
             this.mouseX = this.elementHalfX;
             this.mouseY = this.elementHalfY;
             this._update();
+            this.Render();
         },
         onTouchStart: function (event) {
             navigator.vibrate(10);
@@ -192,6 +197,7 @@ var FYO = FYO || {};
                     this._update();
                 }
             }
+            this.Render();
         },
         onTouchMove: function (event) {
             event.preventDefault();
@@ -206,6 +212,7 @@ var FYO = FYO || {};
                     this._update();
                 }
             }
+            this.Render();
         },
         onTouchDone: function (event) {
             event.preventDefault();
@@ -213,6 +220,7 @@ var FYO = FYO || {};
             this.mouseY = this.elementHalfY;
             this._update();
             navigator.vibrate(10);
+            this.Render();
         },
 
         _update: function () {
@@ -232,14 +240,6 @@ var FYO = FYO || {};
                 x: -this.x,
                 y: -this.y
             });
-        },
-
-        Animate: function () {
-            var self = this;
-            requestAnimationFrame(function () {
-                self.Animate();
-            });
-            this.Render();
         },
 
         Render: function () {

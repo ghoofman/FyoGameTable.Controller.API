@@ -28,7 +28,7 @@ var FYO = FYO || {};
         navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
         this.Init(options || { color: 0x222222 });
-        this.Animate();
+        //this.Animate();
     }
 
     Button3D.prototype = {
@@ -123,6 +123,7 @@ var FYO = FYO || {};
                     object.position.y = 0;
                     self.thumbObj = object;
                     self.scene.add(object);
+                    self.Render();
                 }, onProgress, onError);
             } else if(options.image) {
 
@@ -131,6 +132,7 @@ var FYO = FYO || {};
                 loader.load(options.image || '/fyogametable/imgs/Red_A.png', function (image) {
                     texture.image = image;
                     texture.needsUpdate = true;
+                    self.Render();
                 });
                 modelLoader.load(options.model || '/fyogametable/assets/objs/ButtonTex.obj', function (object) {
                     object.traverse(function (child) {
@@ -141,6 +143,7 @@ var FYO = FYO || {};
                     object.position.y = 0;
                     self.thumbObj = object;
                     self.scene.add(object);
+                    self.Render();
                 }, onProgress, onError);
             }
 
@@ -159,6 +162,7 @@ var FYO = FYO || {};
             this.element.addEventListener('touchend', function (e) { self.onTouchDone(e); }, false);
             //
             window.addEventListener('resize', function (e) { self.onWindowResize(e); }, false);
+            this.Render();
         },
 
         onWindowResize: function () {
@@ -167,31 +171,37 @@ var FYO = FYO || {};
             this.camera.aspect = this.elementHalfX / this.elementHalfY;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(this.element.clientWidth, this.element.clientHeight);
+            this.Render();
         },
         onMouseMove: function (event) {
             event.preventDefault();
             this.mouseX = event.offsetX;
             this.mouseY = event.offsetY;
+            this.Render();
         },
         onMouseDown: function (event) {
             event.preventDefault();
             this.mouseDown = true;
             this.events.trigger('down', true);
+            this.Render();
         },
         onMouseUp: function (event) {
             event.preventDefault();
             this.mouseDown = false;
             this.events.trigger('up', true);
+            this.Render();
         },
         onMouseLeave: function (event) {
             event.preventDefault();
             this.mouseX = this.elementHalfX;
             this.mouseY = this.elementHalfY;
+            this.Render();
         },
         onTouchStart: function () {
             navigator.vibrate(10);
             this.mouseDown = true;
             this.events.trigger('down', true);
+            this.Render();
         },
         onTouchMove: function (event) {
             event.preventDefault();
@@ -205,6 +215,7 @@ var FYO = FYO || {};
                     this.mouseY = touch.pageY - rect.top;
                 }
             }
+            this.Render();
         },
         onTouchDone: function (event) {
             event.preventDefault();
@@ -213,15 +224,16 @@ var FYO = FYO || {};
             //navigator.vibrate(10);
             this.mouseDown = false;
             this.events.trigger('up', true);
-        },
-
-        Animate: function () {
-            var self = this;
-            requestAnimationFrame(function () {
-                self.Animate();
-            });
             this.Render();
         },
+
+        //Animate: function () {
+        //    var self = this;
+        //    requestAnimationFrame(function () {
+        //        self.Animate();
+        //    });
+        //    this.Render();
+        //},
 
         Render: function () {
 
