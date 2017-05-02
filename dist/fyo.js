@@ -25,7 +25,7 @@ var FYO = FYO || {};
             this.events.on('up', options.onup);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options || { color: 0x222222 });
     }
@@ -180,7 +180,7 @@ var FYO = FYO || {};
             this.events.on('up', options.onup);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options || { color: 0x222222 });
         //this.Animate();
@@ -430,7 +430,7 @@ var FYO = FYO || {};
             this.events.on('moved', options.onmoved);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options);
     }
@@ -632,7 +632,7 @@ var FYO = FYO || {};
             this.events.on('moved', options.onmoved);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options);
     }
@@ -1610,7 +1610,7 @@ var FYO = FYO || {};
             this.events.on('moved', options.onmoved);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options);
     }
@@ -1792,7 +1792,7 @@ var FYO = FYO || {};
             this.events.on('moved', options.onmoved);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options);
     }

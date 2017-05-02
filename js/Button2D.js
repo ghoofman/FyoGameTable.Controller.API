@@ -25,7 +25,7 @@ var FYO = FYO || {};
             this.events.on('up', options.onup);
         }
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate || function () { };
 
         this.Init(options || { color: 0x222222 });
     }
