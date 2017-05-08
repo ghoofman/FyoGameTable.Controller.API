@@ -68,7 +68,7 @@ var FYO = FYO || {};
                 self.events.trigger('connected');
             });
 
-            this.socket.on('Redirect', function (path) {
+            this.socket.on('SGRedirect', function (path) {
                 if (path == this.controller) {
                     // we're already at this controller
                     return;
