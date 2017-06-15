@@ -1001,8 +1001,9 @@ var FYO = FYO || {};
                 window.location = '/' + path;
             });
 
-            this.socket.on('SGUpdateMsg', function (data) {
-                self.events.trigger('SGUpdateMsg', data);
+            this.socket.on('SGUpdateMsg', function (msg) {
+                self.events.trigger('SGUpdateMsg', msg);
+                self.events.trigger(msg.MessageType, msg.data);
             });
 
             this.socket.on('app-ping', function (data) {
