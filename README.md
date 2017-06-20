@@ -26,6 +26,11 @@ connector.on('SGUpdateMsg', function(packet) {
   }
 });
 
+// or
+connector.on('Points', function(data) {
+  alert('I got ' + data + ' points!');
+});
+
 ```
 
 ### Rendered Controls
