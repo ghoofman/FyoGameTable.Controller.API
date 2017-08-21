@@ -43,12 +43,63 @@ var FYO = FYO || {};
         var fullscreenImage = document.createElement('img');
         fullscreenImage.setAttribute('class', 'fyo-fullscreen');
         fullscreenImage.setAttribute('src', options.fullscreenImage || '/fyogametable/assets/imgs/fullscreen-128.png');
-        fullscreenImage.onclick = FYO.IOHelper.FullScreen;
+        fullscreenImage.onmouseup = FYO.IOHelper.FullScreen;
         document.body.appendChild(fullscreenImage);
+
+        var settings = document.createElement('img');
+        settings.setAttribute('class', 'fyo-settings');
+        settings.setAttribute('src', options.settingsImage || '/fyogametable/assets/imgs/settings-128.png');
+
+        var settingsWindowEl = document.createElement('div');
+        {
+            settingsWindowEl.setAttribute('class', 'fyo-settings-window');
+            settingsWindowEl.setAttribute('style', 'display: none');
+            {
+                var settingsWindowInnerEl = document.createElement('div');
+                settingsWindowInnerEl.setAttribute('class', 'fyo-settings-window-inner');
+
+                {
+                    var headerEl = document.createElement('h1');
+                    headerEl.innerText = 'SETTINGS';
+                    settingsWindowInnerEl.appendChild(headerEl);
+
+                    var optionsEl = document.createElement('div');
+                    optionsEl.setAttribute('class', 'fyo-settings-window-options');
+                    {
+                        var optEl = document.createElement('div');
+                        optEl.setAttribute('class', 'fyo-settings-window-option');
+                        optEl.innerText = 'Close Game';
+                        optEl.onmouseup = function () {
+                            self.Send('AppEndMsg');
+                        };
+                        optionsEl.appendChild(optEl);
+                    }
+                    settingsWindowInnerEl.appendChild(optionsEl);
+
+
+                    var closeEl = document.createElement('img');
+                    closeEl.setAttribute('class', 'fyo-settings-close');
+                    closeEl.setAttribute('src', options.closeImage || '/fyogametable/assets/imgs/close.png');
+                    closeEl.onmouseup = function () {
+                        settingsWindowEl.setAttribute('style', 'display: none');
+                    };
+                    settingsWindowInnerEl.appendChild(closeEl);
+                }
+                settingsWindowEl.appendChild(settingsWindowInnerEl);
+            }
+            document.body.appendChild(settingsWindowEl);
+        }
+        settings.onmouseup = function () {
+            // display settings window
+            settingsWindowEl.setAttribute('style', '');
+        };
+        document.body.appendChild(settings);
+
         this.IOHelper.GetDeviceInfo(function (info) {
             self.info = info;
             self.events.trigger('info');
         });
+
     }
 
     FyoConnection.prototype = {
