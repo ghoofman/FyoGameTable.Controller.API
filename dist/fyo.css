@@ -1,5 +1,5 @@
 .fyo-fullscreen {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   z-index: 1000;
@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 .fyo-settings {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -43,6 +43,7 @@
   cursor: pointer;
   border: 1px solid #444;
   font-size: 20px;
+  text-transform: uppercase;
 }
 .fyo-settings-window .fyo-settings-window-inner .fyo-settings-window-options .fyo-settings-window-option:hover {
   background-color: #4f4f4f;
@@ -53,6 +54,7 @@
   right: 0;
   width: 32px;
   margin: 40px;
+  cursor: pointer;
 }
 #ping-message {
   position: absolute;
