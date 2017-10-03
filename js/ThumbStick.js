@@ -51,7 +51,7 @@ var FYO = FYO || {};
             var self = this;
 
             this.element = document.getElementById(options.id);
-            
+
             this.elementHalfX = this.element.clientWidth / 2;
             this.elementHalfY = this.element.clientHeight / 2;
 
@@ -110,7 +110,7 @@ var FYO = FYO || {};
         },
         onTouchDone: function (event) {
             event.preventDefault();
-            event.stopPropagation && e.stopPropagation();
+            event.stopPropagation && event.stopPropagation();
             event.cancelBubble = true;
             event.returnValue = false;
             this.mouseX = this.elementHalfX;
