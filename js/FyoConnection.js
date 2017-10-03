@@ -40,11 +40,11 @@ var FYO = FYO || {};
             }
         });
         
-        var fullscreenImage = document.createElement('img');
-        fullscreenImage.setAttribute('class', 'fyo-fullscreen');
-        fullscreenImage.setAttribute('src', options.fullscreenImage || '/fyogametable/assets/imgs/fullscreen-128.png');
-        fullscreenImage.onmouseup = FYO.IOHelper.FullScreen;
-        document.body.appendChild(fullscreenImage);
+        // var fullscreenImage = document.createElement('img');
+        // fullscreenImage.setAttribute('class', 'fyo-fullscreen');
+        // fullscreenImage.setAttribute('src', options.fullscreenImage || '/fyogametable/assets/imgs/fullscreen-128.png');
+        // fullscreenImage.onmouseup = FYO.IOHelper.FullScreen;
+        // document.body.appendChild(fullscreenImage);
 
         var settings = document.createElement('img');
         settings.setAttribute('class', 'fyo-settings');
@@ -67,11 +67,18 @@ var FYO = FYO || {};
                     optionsEl.setAttribute('class', 'fyo-settings-window-options');
                     {
                         var optEl = document.createElement('div');
-                        optEl.setAttribute('class', 'fyo-settings-window-option');
+                        optEl.setAttribute('class', 'fyo-settings-window-option noselect');
                         optEl.innerText = 'Close Game';
                         optEl.onmouseup = function () {
                             self.Send('AppEndMsg');
                         };
+                        optionsEl.appendChild(optEl);
+                    }
+                    {
+                        var optEl = document.createElement('div');
+                        optEl.setAttribute('class', 'fyo-settings-window-option noselect');
+                        optEl.innerText = 'Fullscreen';
+                        optEl.onmouseup = FYO.IOHelper.FullScreen;
                         optionsEl.appendChild(optEl);
                     }
                     settingsWindowInnerEl.appendChild(optionsEl);
