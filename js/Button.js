@@ -107,6 +107,9 @@ var FYO = FYO || {};
         },
         onTouchDone: function (event) {
             event.preventDefault();
+            event.stopPropagation && e.stopPropagation();
+            event.cancelBubble = true;
+            event.returnValue = false;
             this.mouseX = this.elementHalfX;
             this.mouseY = this.elementHalfY;
             //navigator.vibrate(10);

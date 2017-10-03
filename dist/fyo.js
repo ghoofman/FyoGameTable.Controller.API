@@ -107,6 +107,9 @@ var FYO = FYO || {};
         },
         onTouchDone: function (event) {
             event.preventDefault();
+            event.stopPropagation && e.stopPropagation();
+            event.cancelBubble = true;
+            event.returnValue = false;
             this.mouseX = this.elementHalfX;
             this.mouseY = this.elementHalfY;
             //navigator.vibrate(10);
@@ -1809,6 +1812,9 @@ var FYO = FYO || {};
             var self = this;
 
             this.element = document.getElementById(options.id);
+            
+            this.elementHalfX = this.element.clientWidth / 2;
+            this.elementHalfY = this.element.clientHeight / 2;
 
             this.element.addEventListener('mousemove', function (e) { self.onMouseMove(e); }, false);
             this.element.addEventListener('mouseleave', function (e) { self.onMouseLeave(e); }, false);
@@ -1865,6 +1871,9 @@ var FYO = FYO || {};
         },
         onTouchDone: function (event) {
             event.preventDefault();
+            event.stopPropagation && e.stopPropagation();
+            event.cancelBubble = true;
+            event.returnValue = false;
             this.mouseX = this.elementHalfX;
             this.mouseY = this.elementHalfY;
             this._update();
