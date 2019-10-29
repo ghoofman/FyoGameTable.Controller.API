@@ -171,26 +171,27 @@ var FYO = FYO || {};
                 audio: Modernizr.audio == true
             };
 
-            this._getBattery(function (battery) {
+            cb && cb(result);
+            // this._getBattery(function (battery) {
 
-                result.isDesktop = !battery || (battery.charging && battery.chargingTime == 0);
+            //     result.isDesktop = !battery || (battery.charging && battery.chargingTime == 0);
 
-                if (battery) {
-                    result.battery = {
-                        charging: battery.charging,
-                        chargingTime: battery.chargingTime,
-                        dischargingTime: battery.dischargingTime,
-                        level: battery.level
-                    };
-                }
+            //     if (battery) {
+            //         result.battery = {
+            //             charging: battery.charging,
+            //             chargingTime: battery.chargingTime,
+            //             dischargingTime: battery.dischargingTime,
+            //             level: battery.level
+            //         };
+            //     }
 
-                IOHelper.GetDevices(function (devices) {
-                    result.devices = devices;
+            //     IOHelper.GetDevices(function (devices) {
+            //         result.devices = devices;
 
-                    cb && cb(result);
-                });
+            //         cb && cb(result);
+            //     });
 
-            });
+            // });
         }
     };
 

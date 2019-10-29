@@ -20,7 +20,7 @@ var FYO = FYO || {};
         this.x = 0;
         this.y = 0;
 
-        this.events = new FYO.EventManager();
+        this.events = new FYO.EventManager(100); // 10 per second
 
         if (options.onmoved) {
             this.events.on('moved', options.onmoved);

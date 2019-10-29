@@ -3,7 +3,9 @@ var FYO = FYO || {};
 (function () {
     'use strict';
 
-    function EventManager() {
+    function EventManager(rateLimit) {
+        this.rateLimit = rateLimit || 0;
+        this.lastSent = +new Date;
         this.onEvents = {};
     }
 
@@ -40,6 +42,13 @@ var FYO = FYO || {};
             if (!this.onEvents[e]) {
                 return;
             }
+
+            var t = +new Date;
+            var dt = t - this.lastSent;
+            if (dt < this.rateLimit) {
+                return;
+            }
+            this.lastSent = t;
 
             for (var i = 0; i < this.onEvents[e].length; i++) {
                 this.onEvents[e][i](arg);
