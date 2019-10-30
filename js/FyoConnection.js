@@ -16,7 +16,7 @@ var FYO = FYO || {};
         this.controller = controller;
         this.socket = io();
         this.socket.on('connect', function () {
-            self.socket.emit('fyo-client');
+            self.socket.emit('fyo-client', '123');
             self.OnConnect();
         });
 
