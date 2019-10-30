@@ -1478,7 +1478,11 @@ var FYO = FYO || {};
                 audio: Modernizr.audio == true
             };
 
-            cb && cb(result);
+            // delay this so events can get hooked up
+            setTimeout(() => {
+                cb(result);
+            }, 1);
+            // cb && cb(result);
             // this._getBattery(function (battery) {
 
             //     result.isDesktop = !battery || (battery.charging && battery.chargingTime == 0);
