@@ -1072,8 +1072,8 @@ var FYO = FYO || {};
         this.controller = controller;
         this.socket = io();
         this.socket.on('connect', function () {
-            self.OnConnect();
             self.socket.emit('fyo-client');
+            self.OnConnect();
         });
 
         this.input = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
