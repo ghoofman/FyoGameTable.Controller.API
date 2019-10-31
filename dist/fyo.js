@@ -1072,7 +1072,12 @@ var FYO = FYO || {};
         this.controller = controller;
         this.socket = io();
         this.socket.on('connect', function () {
-            self.socket.emit('fyo-client', '123');
+            var href = window.location.href.split('/proxy/');
+            if (href.length > 1) {
+                // it is a proxy address
+                var id = href[1].split('/');
+                self.socket.emit('fyo-client', id[0]);
+            }
             self.OnConnect();
         });
 
